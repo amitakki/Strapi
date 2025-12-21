@@ -1,0 +1,162 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions_english",
+  "info": {
+    "singularName": "question-english",
+    "pluralName": "questions-english",
+    "displayName": "English Question",
+    "description": "English questions including comprehension, grammar, vocabulary",
+    "category": "Questions"
+  },
+  "options": {
+    "draftAndPublish": true,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "questionId": {
+      "type": "string",
+      "unique": true,
+      "regex": "^ENG_[A-Z0-9]+_\\d{3,}$",
+      "maxLength": 50
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "questionsEnglish"
+    },
+    "questionSubtype": {
+      "type": "enumeration",
+      "enum": [
+        "comprehension_literal",
+        "comprehension_inference",
+        "comprehension_vocabulary",
+        "grammar",
+        "punctuation",
+        "spelling",
+        "vocabulary",
+        "sentence_completion"
+      ],
+      "default": "comprehension_literal",
+      "required": true
+    },
+    "questionText": {
+      "type": "text",
+      "required": true,
+      "maxLength": 2000
+    },
+    "questionInstruction": {
+      "type": "string",
+      "maxLength": 500,
+      "default": "Choose the correct answer."
+    },
+    "answerOptions": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.answer-options",
+      "required": true
+    },
+    "correctAnswer": {
+      "type": "enumeration",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "required": true
+    },
+    "comprehensionPassage": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comprehension-passage.comprehension-passage",
+      "inversedBy": "questions"
+    },
+    "passageOrder": {
+      "type": "integer",
+      "min": 1,
+      "max": 20,
+      "description": "Order of this question in the passage (Q1, Q2, Q3...)"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "description": "Optional illustration (rare for English)"
+    },
+    "imageAltText": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "explanation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.explanation",
+      "required": true
+    },
+    "hint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.hint"
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "default": "medium",
+      "required": true
+    },
+    "estimatedTimeSeconds": {
+      "type": "integer",
+      "default": 60,
+      "min": 15,
+      "max": 300
+    },
+    "points": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "max": 5
+    },
+    "examFormats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exam-format.exam-format",
+      "inversedBy": "questionsEnglish"
+    },
+    "compatibleSchools": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::school.school",
+      "inversedBy": "questionsEnglish"
+    },
+    "tags": {
+      "type": "json",
+      "default": []
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "version": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    }
+  }
+}

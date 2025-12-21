@@ -1,0 +1,126 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions_verbal_reasoning",
+  "info": {
+    "singularName": "question-verbal-reasoning",
+    "pluralName": "questions-verbal-reasoning",
+    "displayName": "Verbal Reasoning Question",
+    "description": "Verbal reasoning questions - logic, analogies, codes",
+    "category": "Questions"
+  },
+  "options": {
+    "draftAndPublish": true,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "questionId": {
+      "type": "string",
+      "unique": true,
+      "regex": "^VR_[A-Z0-9]+_\\d{3,}$",
+      "maxLength": 50
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "questionsVerbalReasoning"
+    },
+    "questionSubtype": {
+      "type": "enumeration",
+      "enum": [
+        "analogy",
+        "code_breaking",
+        "word_relationship",
+        "missing_word",
+        "sequence",
+        "odd_one_out",
+        "logical_reasoning"
+      ],
+      "default": "analogy",
+      "required": true
+    },
+    "questionText": {
+      "type": "text",
+      "required": true,
+      "maxLength": 2000
+    },
+    "questionInstruction": {
+      "type": "string",
+      "maxLength": 500,
+      "default": "Choose the word that best completes the relationship."
+    },
+    "answerOptions": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.answer-options",
+      "required": true
+    },
+    "correctAnswer": {
+      "type": "enumeration",
+      "enum": ["A", "B", "C", "D", "E"],
+      "required": true
+    },
+    "explanation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.explanation",
+      "required": true
+    },
+    "hint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.hint"
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": ["easy", "medium", "hard"],
+      "default": "medium",
+      "required": true
+    },
+    "estimatedTimeSeconds": {
+      "type": "integer",
+      "default": 45,
+      "min": 15,
+      "max": 300
+    },
+    "points": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "max": 5
+    },
+    "examFormats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exam-format.exam-format",
+      "inversedBy": "questionsVerbalReasoning"
+    },
+    "compatibleSchools": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::school.school",
+      "inversedBy": "questionsVerbalReasoning"
+    },
+    "tags": {
+      "type": "json",
+      "default": []
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "version": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "kind": "collectionType",
+  "collectionName": "topics",
+  "info": {
+    "singularName": "topic",
+    "pluralName": "topics",
+    "displayName": "Topic",
+    "description": "20-topic curriculum structure per subject with prerequisites and learning objectives",
+    "category": "Configuration"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "topicId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^(MATHS|ENG|VR|NVR)_TOPIC_\\d{3}$",
+      "maxLength": 50,
+      "description": "Unique identifier (TOPIC_001 to TOPIC_080)"
+    },
+    "subject": {
+      "type": "enumeration",
+      "enum": ["maths", "english", "verbal_reasoning", "non_verbal_reasoning"],
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200,
+      "description": "Topic name (e.g., 'Basic Arithmetic')"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 1000,
+      "description": "Detailed description of topic content"
+    },
+    "orderIndex": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 20,
+      "description": "Topic sequence number within subject (1-20)"
+    },
+    "difficultyLevel": {
+      "type": "enumeration",
+      "enum": ["foundation", "intermediate", "advanced"],
+      "required": true,
+      "default": "intermediate"
+    },
+    "prerequisiteTopic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "description": "Previous topic that should be completed first"
+    },
+    "nextTopics": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::topic.topic",
+      "mappedBy": "prerequisiteTopic",
+      "description": "Topics that follow this one"
+    },
+    "learningObjectives": {
+      "type": "json",
+      "default": [],
+      "description": "Array of learning goals/outcomes"
+    },
+    "targetQuestionCount": {
+      "type": "integer",
+      "default": 20,
+      "min": 10,
+      "max": 100,
+      "description": "Expected number of questions per topic"
+    },
+    "estimatedTimeMinutes": {
+      "type": "integer",
+      "default": 20,
+      "min": 5,
+      "max": 120,
+      "description": "Expected time to master this topic"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this topic currently active?"
+    },
+    "questionsMaths": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-maths.question-maths",
+      "mappedBy": "topic"
+    },
+    "questionsEnglish": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-english.question-english",
+      "mappedBy": "topic"
+    },
+    "questionsVerbalReasoning": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-verbal-reasoning.question-verbal-reasoning",
+      "mappedBy": "topic"
+    },
+    "questionsNvr": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-nvr.question-nvr",
+      "mappedBy": "topic"
+    }
+  }
+}

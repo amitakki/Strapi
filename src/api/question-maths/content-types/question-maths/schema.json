@@ -1,0 +1,164 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions_maths",
+  "info": {
+    "singularName": "question-maths",
+    "pluralName": "questions-maths",
+    "displayName": "Maths Question",
+    "description": "Mathematics questions with diagram support",
+    "category": "Questions"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "questionId": {
+      "type": "string",
+      "unique": true,
+      "regex": "^MATHS_[A-Z0-9]+_\\d{3,}$",
+      "maxLength": 50
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "questionsMaths"
+    },
+    "questionSubtype": {
+      "type": "enumeration",
+      "required": true,
+      "default": "standard",
+      "enum": [
+        "standard",
+        "word_problem",
+        "diagram_based",
+        "graph_chart",
+        "geometry",
+        "data_interpretation"
+      ]
+    },
+    "questionText": {
+      "type": "text",
+      "maxLength": 2000,
+      "required": true
+    },
+    "questionInstruction": {
+      "type": "string",
+      "default": "Choose the correct answer.",
+      "maxLength": 500
+    },
+    "answerOptions": {
+      "type": "component",
+      "component": "question.answer-options",
+      "repeatable": false,
+      "required": true
+    },
+    "correctAnswer": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageAltText": {
+      "type": "text",
+      "maxLength": 1000
+    },
+    "hasLabels": {
+      "type": "boolean",
+      "default": false
+    },
+    "labelInfo": {
+      "type": "json"
+    },
+    "explanation": {
+      "type": "component",
+      "component": "question.explanation",
+      "repeatable": false,
+      "required": true
+    },
+    "hint": {
+      "type": "component",
+      "component": "question.hint",
+      "repeatable": false
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "required": true,
+      "default": "medium",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "estimatedTimeSeconds": {
+      "type": "integer",
+      "default": 90,
+      "min": 15,
+      "max": 300
+    },
+    "points": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "max": 5
+    },
+    "examFormats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exam-format.exam-format",
+      "inversedBy": "questionsMaths"
+    },
+    "compatibleSchools": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::school.school",
+      "inversedBy": "questionsMaths"
+    },
+    "questionSet": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::question-set.question-set",
+      "description": "For grouped questions sharing a diagram",
+      "inversedBy": "questionsMaths"
+    },
+    "setOrder": {
+      "type": "integer",
+      "min": 1,
+      "max": 20
+    },
+    "tags": {
+      "type": "json"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "version": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    }
+  }
+}

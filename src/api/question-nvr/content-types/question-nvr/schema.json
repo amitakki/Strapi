@@ -1,0 +1,189 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions_nvr",
+  "info": {
+    "singularName": "question-nvr",
+    "pluralName": "questions-nvr",
+    "displayName": "Non-Verbal Reasoning Question",
+    "description": "NVR questions with extensive image support",
+    "category": "Questions"
+  },
+  "options": {
+    "draftAndPublish": true,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "questionId": {
+      "type": "string",
+      "unique": true,
+      "regex": "^NVR_[A-Z0-9]+_\\d{3,}$",
+      "maxLength": 50
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "questionsNvr"
+    },
+    "questionSubtype": {
+      "type": "enumeration",
+      "enum": [
+        "sequence",
+        "odd_one_out",
+        "analogy",
+        "matrix",
+        "cube_nets",
+        "rotation",
+        "hidden_shapes",
+        "shape_logic",
+        "fold_punch",
+        "rotation_3d",
+        "mirror_image",
+        "pattern_completion"
+      ],
+      "default": "sequence",
+      "required": true
+    },
+    "questionText": {
+      "type": "text",
+      "required": true,
+      "maxLength": 1000,
+      "description": "Brief instruction (e.g., 'Complete the sequence')"
+    },
+    "questionInstruction": {
+      "type": "string",
+      "maxLength": 500,
+      "default": "Choose the correct answer from the options below."
+    },
+    "answerOptions": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.answer-options",
+      "required": true,
+      "description": "Text labels like 'Shape A', 'Shape B' - actual shapes are in images"
+    },
+    "correctAnswer": {
+      "type": "enumeration",
+      "enum": ["A", "B", "C", "D", "E"],
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"],
+      "description": "Main image for matrix, cube nets, or single diagrams"
+    },
+    "sequenceImages": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"],
+      "max": 10,
+      "description": "Ordered sequence images (for sequence, analogy questions)"
+    },
+    "optionAImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Image for answer option A"
+    },
+    "optionBImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Image for answer option B"
+    },
+    "optionCImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Image for answer option C"
+    },
+    "optionDImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Image for answer option D"
+    },
+    "optionEImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Image for answer option E"
+    },
+    "imageAltText": {
+      "type": "text",
+      "required": true,
+      "maxLength": 2000,
+      "description": "Describe all images for accessibility (separate with ||)"
+    },
+    "explanation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.explanation",
+      "required": true
+    },
+    "hint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.hint"
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": ["easy", "medium", "hard"],
+      "default": "medium",
+      "required": true
+    },
+    "estimatedTimeSeconds": {
+      "type": "integer",
+      "default": 45,
+      "min": 15,
+      "max": 300
+    },
+    "points": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "max": 5
+    },
+    "examFormats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exam-format.exam-format",
+      "inversedBy": "questionsNvr"
+    },
+    "compatibleSchools": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::school.school",
+      "inversedBy": "questionsNvr"
+    },
+    "tags": {
+      "type": "json",
+      "default": []
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "version": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    }
+  }
+}

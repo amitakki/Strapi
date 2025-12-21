@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_question_answer_options",
+  "info": {
+    "displayName": "Answer Options",
+    "description": "Multiple choice answer options (A-E)"
+  },
+  "options": {},
+  "attributes": {
+    "optionA": {
+      "type": "string",
+      "required": true,
+      "maxLength": 500
+    },
+    "optionB": {
+      "type": "string",
+      "required": true,
+      "maxLength": 500
+    },
+    "optionC": {
+      "type": "string",
+      "required": true,
+      "maxLength": 500
+    },
+    "optionD": {
+      "type": "string",
+      "required": true,
+      "maxLength": 500
+    },
+    "optionE": {
+      "type": "string",
+      "required": true,
+      "maxLength": 500
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "question_sets",
+  "info": {
+    "singularName": "question-set",
+    "pluralName": "question-sets",
+    "displayName": "Question Set"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "setId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^SET_[A-Z]+_\\d{3,}$"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "sharedImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "sharedInstructions": {
+      "type": "text"
+    },
+    "questionsMaths": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-maths.question-maths",
+      "mappedBy": "questionSet"
+    }
+  }
+}

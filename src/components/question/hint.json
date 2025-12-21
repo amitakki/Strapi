@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_question_hints",
+  "info": {
+    "displayName": "Hint",
+    "description": "Optional hint for students"
+  },
+  "options": {},
+  "attributes": {
+    "hintText": {
+      "type": "text",
+      "required": true,
+      "maxLength": 500
+    },
+    "revealCondition": {
+      "type": "enumeration",
+      "enum": ["always", "after_attempt", "on_request"],
+      "default": "on_request"
+    }
+  }
+}

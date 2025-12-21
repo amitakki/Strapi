@@ -1,0 +1,283 @@
+{
+  "kind": "collectionType",
+  "collectionName": "schools",
+  "info": {
+    "singularName": "school",
+    "pluralName": "schools",
+    "displayName": "School",
+    "description": "UK Grammar Schools database with comprehensive information",
+    "category": "Configuration"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "schoolId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^GS\\d{3}$",
+      "maxLength": 10,
+      "description": "Unique school identifier (GS001-GS999)"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200,
+      "description": "Official school name"
+    },
+    "shortName": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "School abbreviation (e.g., 'HBS' for Henrietta Barnett)"
+    },
+    "schoolType": {
+      "type": "enumeration",
+      "enum": ["Grammar_School", "Academy", "Independent"],
+      "default": "Grammar_School",
+      "required": true,
+      "description": "Legal school type"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": ["Boys", "Girls", "Co-educational"],
+      "required": true,
+      "description": "Gender admissions policy"
+    },
+    "region": {
+      "type": "enumeration",
+      "enum": [
+        "Kent",
+        "Gloucestershire",
+        "London",
+        "Birmingham",
+        "Buckinghamshire",
+        "Essex",
+        "North_West",
+        "Yorkshire",
+        "Lincolnshire",
+        "Other"
+      ],
+      "required": true,
+      "description": "Geographic region for MVP focus"
+    },
+    "county": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "County name"
+    },
+    "town": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Town or city"
+    },
+    "addressLine1": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Street address"
+    },
+    "addressLine2": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Additional address line"
+    },
+    "postcode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "UK postcode"
+    },
+    "country": {
+      "type": "string",
+      "default": "England",
+      "maxLength": 50
+    },
+    "coordinates": {
+      "type": "json",
+      "description": "Geographic coordinates: {latitude: X, longitude: Y}"
+    },
+    "websiteUrl": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "School website"
+    },
+    "admissionsEmail": {
+      "type": "email",
+      "description": "Admissions contact email"
+    },
+    "admissionsPhone": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Admissions phone number"
+    },
+    "examFormat": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::exam-format.exam-format",
+      "description": "Primary exam format used (GL, CEM, etc.)"
+    },
+    "studentCapacity": {
+      "type": "integer",
+      "min": 0,
+      "max": 3000,
+      "description": "Total student capacity"
+    },
+    "year7Intake": {
+      "type": "integer",
+      "min": 0,
+      "max": 500,
+      "description": "Number of Year 7 places available"
+    },
+    "ofstedRating": {
+      "type": "enumeration",
+      "enum": ["Outstanding", "Good", "Requires_Improvement", "Inadequate", "N/A"],
+      "description": "Latest Ofsted rating"
+    },
+    "ofstedReportDate": {
+      "type": "date",
+      "description": "Date of latest Ofsted inspection"
+    },
+    "ofstedReportUrl": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Link to Ofsted report"
+    },
+    "religiousCharacter": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Religious affiliation if any"
+    },
+    "dfeNumber": {
+      "type": "integer",
+      "description": "Department for Education reference number"
+    },
+    "catchmentAreaType": {
+      "type": "enumeration",
+      "enum": ["Distance_Based", "Catchment_Area", "County_Wide", "Open"],
+      "description": "How catchment is determined"
+    },
+    "catchmentDescription": {
+      "type": "text",
+      "maxLength": 1000,
+      "description": "Detailed catchment area description"
+    },
+    "feederSchools": {
+      "type": "text",
+      "maxLength": 2000,
+      "description": "List of common feeder primary schools"
+    },
+    "oversubscriptionCriteria": {
+      "type": "text",
+      "maxLength": 2000,
+      "description": "Priority criteria when oversubscribed"
+    },
+    "appealsProcess": {
+      "type": "text",
+      "maxLength": 1000,
+      "description": "How to appeal admissions decisions"
+    },
+    "supplementaryFormRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Requires additional information form?"
+    },
+    "siblingPriority": {
+      "type": "boolean",
+      "default": false,
+      "description": "Gives priority to siblings?"
+    },
+    "lookedAfterChildrenPriority": {
+      "type": "boolean",
+      "default": true,
+      "description": "Gives priority to looked after children?"
+    },
+    "registrationOpens": {
+      "type": "date",
+      "description": "Registration opening date (annual)"
+    },
+    "registrationDeadline": {
+      "type": "date",
+      "description": "Registration closing date"
+    },
+    "examDate": {
+      "type": "date",
+      "description": "Typical exam date (annual)"
+    },
+    "resultsNotificationDate": {
+      "type": "date",
+      "description": "When results are sent"
+    },
+    "acceptanceDeadline": {
+      "type": "date",
+      "description": "Deadline to accept offer"
+    },
+    "openDays": {
+      "type": "text",
+      "maxLength": 1000,
+      "description": "Information about open days"
+    },
+    "schoolFacilities": {
+      "type": "text",
+      "maxLength": 2000,
+      "description": "Available facilities and resources"
+    },
+    "extracurricularHighlights": {
+      "type": "text",
+      "maxLength": 2000,
+      "description": "Notable clubs and activities"
+    },
+    "transportLinks": {
+      "type": "text",
+      "maxLength": 1000,
+      "description": "Public transport information"
+    },
+    "notes": {
+      "type": "text",
+      "maxLength": 2000,
+      "description": "Additional important information"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is school currently accepting applications?"
+    },
+    "isMvpFocus": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a Kent/Gloucestershire MVP focus school?"
+    },
+    "dataSource": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Source of this information"
+    },
+    "lastUpdated": {
+      "type": "date",
+      "description": "When this record was last updated"
+    },
+    "questionsMaths": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-maths.question-maths",
+      "mappedBy": "compatibleSchools"
+    },
+    "questionsEnglish": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-english.question-english",
+      "mappedBy": "compatibleSchools"
+    },
+    "questionsVerbalReasoning": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-verbal-reasoning.question-verbal-reasoning",
+      "mappedBy": "compatibleSchools"
+    },
+    "questionsNvr": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-nvr.question-nvr",
+      "mappedBy": "compatibleSchools"
+    }
+  }
+}

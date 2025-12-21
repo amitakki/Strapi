@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comprehension_passages",
+  "info": {
+    "singularName": "comprehension-passage",
+    "pluralName": "comprehension-passages",
+    "displayName": "Comprehension Passage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "passageId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^PASSAGE_\\d{3,}$"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 200,
+      "required": true
+    },
+    "passageText": {
+      "type": "richtext",
+      "required": true
+    },
+    "genre": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "fiction",
+        "non_fiction",
+        "poetry",
+        "article"
+      ]
+    },
+    "wordCount": {
+      "type": "integer",
+      "required": true
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "default": "medium",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-english.question-english",
+      "mappedBy": "comprehensionPassage"
+    }
+  }
+}

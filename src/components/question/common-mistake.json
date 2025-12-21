@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_question_common_mistakes",
+  "info": {
+    "displayName": "Common Mistake",
+    "description": "Explanation of why wrong answers are wrong"
+  },
+  "options": {},
+  "attributes": {
+    "incorrectAnswer": {
+      "type": "enumeration",
+      "enum": ["A", "B", "C", "D", "E"],
+      "required": true
+    },
+    "whyWrong": {
+      "type": "text",
+      "required": true,
+      "maxLength": 500
+    },
+    "commonMisconception": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "What misconception leads to this wrong answer?"
+    }
+  }
+}

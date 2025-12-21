@@ -1,0 +1,107 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exam_formats",
+  "info": {
+    "singularName": "exam-format",
+    "pluralName": "exam-formats",
+    "displayName": "Exam Format",
+    "description": "11+ exam format specifications and details",
+    "category": "Configuration"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "code": {
+      "type": "enumeration",
+      "enum": ["GL", "CEM", "Kent_Test", "ISEB", "CSSE", "Common"],
+      "required": true,
+      "unique": true,
+      "description": "Unique exam format code"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "description": "Display name (e.g., 'GL Assessment')"
+    },
+    "provider": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Organization providing the test"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 1000,
+      "description": "Overview of exam format, testing approach, key features"
+    },
+    "formatDetails": {
+      "type": "json",
+      "description": "Detailed specifications: subjects, duration, question count, format type, adaptive status"
+    },
+    "subjects": {
+      "type": "json",
+      "default": [],
+      "description": "Array of subjects tested: ['English', 'Maths', 'VR', 'NVR']"
+    },
+    "duration": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Test duration (e.g., '50 minutes per paper')"
+    },
+    "questionCount": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Number of questions (e.g., '80 per paper')"
+    },
+    "isPaperBased": {
+      "type": "boolean",
+      "default": true,
+      "description": "True if paper-based, false if online"
+    },
+    "isAdaptive": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if adaptive testing (difficulty adjusts)"
+    },
+    "displayOrder": {
+      "type": "integer",
+      "default": 0,
+      "description": "Order for displaying in lists"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this format currently in use?"
+    },
+    "notes": {
+      "type": "text",
+      "maxLength": 1000,
+      "description": "Additional information, tips, or updates"
+    },
+    "questionsMaths": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-maths.question-maths",
+      "mappedBy": "examFormats"
+    },
+    "questionsEnglish": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-english.question-english",
+      "mappedBy": "examFormats"
+    },
+    "questionsVerbalReasoning": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-verbal-reasoning.question-verbal-reasoning",
+      "mappedBy": "examFormats"
+    },
+    "questionsNvr": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-nvr.question-nvr",
+      "mappedBy": "examFormats"
+    }
+  }
+}

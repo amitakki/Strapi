@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_question_explanations",
+  "info": {
+    "displayName": "Explanation",
+    "description": "Detailed solution explanation"
+  },
+  "options": {},
+  "attributes": {
+    "summary": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200,
+      "description": "One-line summary"
+    },
+    "detailedSolution": {
+      "type": "richtext",
+      "required": true,
+      "description": "Step-by-step solution"
+    },
+    "workingSteps": {
+      "type": "json",
+      "default": [],
+      "description": "Array: [{step: 1, description: '...', formula: '...'}]"
+    },
+    "visualAid": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"],
+      "description": "Optional diagram explaining the solution"
+    }
+  }
+}
