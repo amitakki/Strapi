@@ -17,7 +17,7 @@
       "type": "string",
       "required": true,
       "unique": true,
-      "regex": "^GS\\d{3}$",
+      "regex": "^(GS|IND)\\d{3}$",
       "maxLength": 10,
       "description": "Unique school identifier (GS001-GS999)"
     },
