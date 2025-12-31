@@ -11,13 +11,22 @@
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "code": {
       "type": "enumeration",
-      "enum": ["GL", "CEM", "Kent_Test", "ISEB", "CSSE", "Common"],
-      "required": true,
       "unique": true,
+      "required": true,
+      "enum": [
+        "GL",
+        "CEM",
+        "Kent_Test",
+        "ISEB",
+        "CSSE",
+        "Common"
+      ],
       "description": "Unique exam format code"
+
     },
     "name": {
       "type": "string",
@@ -46,7 +55,7 @@
     },
     "duration": {
       "type": "string",
-      "maxLength": 100,
+      "maxLength": 200,
       "description": "Test duration (e.g., '50 minutes per paper')"
     },
     "questionCount": {

@@ -72,21 +72,31 @@
     },
     "correctAnswer": {
       "type": "enumeration",
-      "enum": ["A", "B", "C", "D", "E"],
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
       "required": true
     },
     "mainImage": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "description": "Main image for matrix, cube nets, or single diagrams"
     },
     "sequenceImages": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "max": 10,
       "description": "Ordered sequence images (for sequence, analogy questions)"
     },
@@ -94,35 +104,45 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "description": "Image for answer option A"
     },
     "optionBImage": {
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "description": "Image for answer option B"
     },
     "optionCImage": {
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "description": "Image for answer option C"
     },
     "optionDImage": {
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "description": "Image for answer option D"
     },
     "optionEImage": {
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "description": "Image for answer option E"
     },
     "imageAltText": {
@@ -144,7 +164,11 @@
     },
     "difficulty": {
       "type": "enumeration",
-      "enum": ["easy", "medium", "hard"],
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
       "default": "medium",
       "required": true
     },
