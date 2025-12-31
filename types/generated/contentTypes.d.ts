@@ -535,7 +535,7 @@ export interface ApiExamFormatExamFormat extends Struct.CollectionTypeSchema {
     displayOrder: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     duration: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
-        maxLength: 100;
+        maxLength: 200;
       }>;
     formatDetails: Schema.Attribute.JSON;
     isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
